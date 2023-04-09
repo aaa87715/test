@@ -1,0 +1,112 @@
+!!先創建資料庫進入資料庫在創建表格
+
+
+
+資料型態
+INT				  -- 整數
+DECIMAL(m,n)      -- 小數(m代表整數有幾位,n代表小數有幾位
+VARCHAR(m)		  -- 字串m為能存幾個字元
+BLOB			  -- 二進制(圖片,影片
+DATE			  -- 'YYYY-MM-DD'日期
+TIMESTAMP		  -- 'YYYY-MM-DD HH:MM:SS'時間
+
+語法
+ 創建資料庫[
+	1.CREAT DATABASE `name`(自己設定的名稱用``包起來為了跟關鍵字避開);//創建資料庫
+
+	2.SHOW DATABASE;//顯示資料庫
+
+	3.DROP DATABASE `name`;//刪除資料庫
+
+	4.USE `name`;//進入資料庫(要建立表格前要先進資料庫)
+]
+
+
+創建表格(沒給值)[
+	5.CREAT TABLE `name`{}//創建表格
+	  Ex:CREAT TABLE `name`{
+			`student_id` INT PRIMARY KEY;
+			`name` VARCHAR(20);
+			`major` VARCHAR(20);
+			}
+			
+			
+			
+			
+	6.DESCRIBE `name`;//SHOW表格
+
+	7.DROP TABLE `name`;//刪除表格
+
+	8.ALTER TABLE `name` ADD `要增加的屬性` 資料型態(INT,DECIMAL,BLOB...)
+		Ex:ALTER TABLE `student(表格)` ADD `sex(要加入的屬性)` VARCHAR(2)//資料型態;
+
+	9.ALTER TABLE `name` DROP COLUMN `要刪除的元素`;
+		Ex:ALTER TABLE `name` DROP COLUMN `sex`;//刪除表格內選取的元素
+]
+
+
+給表格值[
+	10.INSERT INTO `name` VALUES();//在表格內依序填入值
+		Ex:CREAT TABLE `name`{
+			`student_id` INT PRIMARY KEY;//PRIMARY(PK)不能重複
+			`name` VARCHAR(20);
+			`major` VARCHAR(20);
+			}
+		INSERT INTO `name` VALUES(2,"小黑","歷史");(依照宣告順序填
+		第二種寫法
+		INSERT INTO `name` (name,major,student_id//自訂輸入順序) VALUES("小黑","歷史",2);(依照自己編的順序填入值
+		不填預設NULL	
+]
+
+
+更新/刪除[
+	更新
+		一次改變一個值
+			UPDATE `student(表格名稱)`//更新值
+			SET `element(major)`="想改變的值(法語)";//把element設為
+			WHERE `major`="英語" OR "國語" AND score>20;判斷條件(也可搭配 OR AND > < >= <= <>(不等於) 使用
+		一次改變多值
+			UPDATE `student(表格名稱)`//更新值
+			SET `element(major)`="法語",`name`="小綠";//這樣一次就可以改變兩個值了
+			WHERE `student_id`="2";
+		也可以不設定判斷條件
+			UPDATE `student(表格名稱)`//更新值
+			SET `element(major)`="法語";//全部人的major都改成法語
+	刪除
+		一次刪除一個值
+			DELETE FROM`student(表格名稱)` 
+			WHERE `element(major)`="法語" AND `name`="小綠" OR `score`<60;//刪除在TABLE裡符合判斷條件(也可搭配 OR AND > < >= <= <>(不等於) 使用
+		一次刪除多個值
+			DELETE FROM`student(表格名稱)` 
+			WHERE `element(major)`="法語",`name`="小綠";//刪除在TABLE裡符合這個條件的
+		不設判斷條件
+			DELETE FROM `student(表格名稱)`//直接刪除表格
+]
+
+	
+
+
+約束[
+	NOT NULL//不能為空值
+	  `name` VARCHAR(20) NOT NULL; //不能為空值;
+	UNUQUE  //表格內不能重複
+	  `name` VARCHAR(20) UNIQUE; //表格內不能重複;
+	DEFAULT //如果沒有填值預設為``
+	  `name` VARCHAR(20) DEFAULT "小黑";//如果沒輸入值預設為小黑
+	AUTO_INCREMENT //下一項自動+1(不用每次都手動輸入
+	  `name` VARCHAR(20) AUTO_INCREMENT;
+	]
+	
+	
+選取[
+	SELECT * FROM `name`//列出所有表格資料( DESCRIBE name 和 SELECT * FROM name 的主要區别在於他們的目的和输出。
+		DESCRIBE name：這個 SQL 命令用於獲取關於名為 name 的表中列的信息，例如每個列的數據類型、長度和可空性。該命令的輸出通常包括一個表，其中包括列名、數據類型和任何其他元數據的列。
+		SELECT * FROM name：這個 SQL 命令用於從名為 name 的表中選擇所有的行和列，這樣可以返回該表中的全部數據。輸出將是一個包含所有列的表，每一行都是一個記錄。
+	]
+	
+取得資料(搜尋資料)[
+SELECT * FROM `student(表格名稱)` //*號代表全選
+
+
+
+]
